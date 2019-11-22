@@ -1,21 +1,16 @@
 'use strict'
 
-export default class {
-    constructor(scene) {
-        this.scene = scene
-        this.score = 0
+export default function (scene) {
+    var score = 0
+    var scoreText
+    function text() {
+        return 'Score: ' + score
     }
-
-    create() {
-        this.scoreText = this.scene.add.text(16, 16, this.text(), { fontSize: '32px', fill: '#ffffff' })
-    }
-
-    add(points) {
-        this.score += points
-        this.scoreText.setText(this.text())
-    }
-
-    text() {
-        return 'Score: ' + this.score
+    return {
+        create: () => scoreText = scene.add.text(16, 16, text(), { fontSize: '32px', fill: '#ffffff' }),
+        add: points => {
+            score += points
+            scoreText.setText(text())
+        }
     }
 }

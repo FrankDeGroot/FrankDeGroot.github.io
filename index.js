@@ -19,8 +19,7 @@ window.addEventListener('click', () => {
         physics: {
             default: 'arcade',
             arcade: {
-                gravity: { y: 300 },
-                debug: false
+                gravity: { y: 300 }
             }
         },
         scene: {
@@ -34,12 +33,8 @@ window.addEventListener('click', () => {
                     score: new Score(this)
                 })
             },
-            create: function () {
-                all.create()
-            },
-            update: function update() {
-                all.update()
-            }
+            create: () => all.create(),
+            update: () => all.update()
         }
     })
 })
