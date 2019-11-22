@@ -10,7 +10,10 @@ import Player from './player.js'
 import Stars from './stars.js'
 import Score from './score.js'
 
-window.addEventListener('click', () => {
+window.addEventListener('click', startGame)
+
+function startGame() {
+    window.removeEventListener('click', startGame)
     var all
     new Phaser.Game({
         type: Phaser.AUTO,
@@ -37,4 +40,4 @@ window.addEventListener('click', () => {
             update: () => all.update()
         }
     })
-})
+}
