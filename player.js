@@ -50,8 +50,8 @@ export default function (scene) {
         interact: a => {
             all = a
             scene.physics.add.collider(player, all.platforms.group())
-            scene.physics.add.collider(player, all.bombs.group(), hitBomb, null, this)
-            scene.physics.add.overlap(player, all.stars.group(), collectStar, null, this)
+            scene.physics.add.collider(player, all.bombs.group(), hitBomb)
+            scene.physics.add.overlap(player, all.stars.group(), collectStar)
         },
         update: () => {
             if (gameOver)
