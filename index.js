@@ -1,7 +1,7 @@
 'use strict'
 
-import '//cdn.jsdelivr.net/npm/phaser@3.20.1/dist/phaser.min.js'
-// import './phaser.min.js'
+// import '//cdn.jsdelivr.net/npm/phaser@3.20.1/dist/phaser.min.js'
+import './phaser.min.js'
 import All from './all.js'
 import Sky from './sky.js'
 import Platforms from './platforms.js'

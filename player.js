@@ -23,52 +23,50 @@ export default function (scene) {
         player.anims.play('turn')
         gameOver = true
     }
-    return {
-        create: () => {
-            player = scene.physics.add.sprite(100, 450, PLAYER)
-            player.setBounce(0.2)
-            player.setCollideWorldBounds(true)
-            scene.anims.create({
-                key: 'left',
-                frames: scene.anims.generateFrameNumbers(PLAYER, { start: 0, end: 3 }),
-                frameRate: 10,
-                repeat: -1
-            })
-            scene.anims.create({
-                key: 'turn',
-                frames: [{ key: PLAYER, frame: 4 }],
-                frameRate: 20
-            })
-            scene.anims.create({
-                key: 'right',
-                frames: scene.anims.generateFrameNumbers(PLAYER, { start: 5, end: 8 }),
-                frameRate: 10,
-                repeat: -1
-            })
-            cursors = scene.input.keyboard.createCursorKeys()
-        },
-        interact: a => {
-            all = a
-            scene.physics.add.collider(player, all.platforms.group())
-            scene.physics.add.collider(player, all.bombs.group(), hitBomb)
-            scene.physics.add.overlap(player, all.stars.group(), collectStar)
-        },
-        update: () => {
-            if (gameOver)
-                return
-            if (cursors.left.isDown) {
-                player.setVelocityX(-160)
-                player.anims.play('left', true)
-            } else if (cursors.right.isDown) {
-                player.setVelocityX(160)
-                player.anims.play('right', true)
-            } else {
-                player.setVelocityX(0)
-                player.anims.play('turn')
-            }
-            if (cursors.up.isDown && player.body.touching.down) {
-                player.setVelocityY(-330)
-            }
+    this.create = () => {
+        player = scene.physics.add.sprite(100, 450, PLAYER)
+        player.setBounce(0.2)
+        player.setCollideWorldBounds(true)
+        scene.anims.create({
+            key: 'left',
+            frames: scene.anims.generateFrameNumbers(PLAYER, { start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        })
+        scene.anims.create({
+            key: 'turn',
+            frames: [{ key: PLAYER, frame: 4 }],
+            frameRate: 20
+        })
+        scene.anims.create({
+            key: 'right',
+            frames: scene.anims.generateFrameNumbers(PLAYER, { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: -1
+        })
+        cursors = scene.input.keyboard.createCursorKeys()
+    }
+    this.interact = a => {
+        all = a
+        scene.physics.add.collider(player, all.platforms.group())
+        scene.physics.add.collider(player, all.bombs.group(), hitBomb)
+        scene.physics.add.overlap(player, all.stars.group(), collectStar)
+    }
+    this.update = () => {
+        if (gameOver)
+            return
+        if (cursors.left.isDown) {
+            player.setVelocityX(-160)
+            player.anims.play('left', true)
+        } else if (cursors.right.isDown) {
+            player.setVelocityX(160)
+            player.anims.play('right', true)
+        } else {
+            player.setVelocityX(0)
+            player.anims.play('turn')
+        }
+        if (cursors.up.isDown && player.body.touching.down) {
+            player.setVelocityY(-330)
         }
     }
 }
